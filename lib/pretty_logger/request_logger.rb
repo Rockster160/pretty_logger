@@ -7,6 +7,7 @@ class PrettyLogger::RequestLogger < PrettyLogger::BaseLogger
   end
 
   def log_request(extra_text=nil)
+    # Nothing change
     ::PrettyLogger::BaseLogger.info([
       "#{pretty_user} #{request.method.upcase} #{request.path} #{extra_text}",
       params.blank? ? nil : ::PrettyLogger::BaseLogger.pretty_message(params).truncate(2000),
