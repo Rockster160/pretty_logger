@@ -4,7 +4,10 @@ module PrettyLogger::ControllerMethods
   end
 
   def request_logger
-    @request_logger ||= ::PrettyLogger::RequestLogger.new(request: request)
+    @request_logger ||= ::PrettyLogger::RequestLogger.new(
+      request: request,
+      current_user: try(:current_user)
+    )
   end
 
   def prettylog_and_reraise!(exception)
