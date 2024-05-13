@@ -6,9 +6,9 @@ class PrettyLogger::RequestLogger < PrettyLogger::BaseLogger
     @current_user = current_user
   end
 
-  def log_request
+  def log_request(extra_text=nil)
     ::PrettyLogger::BaseLogger.info([
-      "#{pretty_user} #{request.method.upcase} #{request.path}",
+      "#{pretty_user} #{request.method.upcase} #{request.path} #{extra_text}",
       params.blank? ? nil : ::PrettyLogger::BaseLogger.pretty_message(params).truncate(2000),
     ].compact.join("\n"))
   end

@@ -1,6 +1,6 @@
 module PrettyLogger::ControllerMethods
-  def pretty_logit
-    request_logger.log_request
+  def pretty_logit(extra_text=nil)
+    request_logger.log_request(extra_text)
   end
 
   def request_logger
