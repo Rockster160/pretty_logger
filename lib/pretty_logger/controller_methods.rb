@@ -4,11 +4,11 @@ module PrettyLogger::ControllerMethods
   end
 
   def request_logger
-    @request_logger ||= ::PrettyLogger::RequestLogger.new(
-      devise_current_agent: devise_current_agent,
-      impersonating: impersonating?,
-      current_agent: current_agent,
-      request: request,
-    )
+    @request_logger ||= ::PrettyLogger::RequestLogger.new(request: request)
+  end
+
+  def prettylog_and_reraise!(exception)
+    request_logger.log_error(exception)
+    raise exception
   end
 end

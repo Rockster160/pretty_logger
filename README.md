@@ -1,24 +1,22 @@
 # PrettyLogger
 
-TODO: Delete this and the text below, and describe your gem
-
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/pretty_logger`. To experiment with that code, run `bin/console` for an interactive prompt.
+Quick and simple Rails logger that lets you output to a different log file for more controlled breakdowns of site visits.
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
-
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+    $ bundle add pretty_logger
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_PRIOR_TO_RELEASE_TO_RUBYGEMS_ORG
+    $ gem install pretty_logger
 
 ## Usage
 
-TODO: Write usage instructions here
+Add `before_action :pretty_logit` to your ApplicationController. Now you have pretty logs getting output to `log/custom_log.log`
+
+
 
 ## Development
 
@@ -28,7 +26,9 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/pretty_logger. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/pretty_logger/blob/master/CODE_OF_CONDUCT.md).
+- [ ] Add a config that can be set in an initializer for accessing user and prettifying in logs
+- [ ] Customize location of custom_log file
+- [ ] Don't auto-hijack errors, should need to add that manually?
 
 ## License
 
