@@ -29,6 +29,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 - [ ] Add a config that can be set in an initializer for accessing user and prettifying in logs
 - [ ] Customize location of custom_log file
 - [ ] Don't auto-hijack errors, should need to add that manually?
+- [ ] Don't require Rails- should be able to include in a basic Ruby project just as easily
 
 ## License
 
