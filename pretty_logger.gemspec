@@ -3,7 +3,6 @@
 require_relative "lib/pretty_logger/version"
 
 Gem::Specification.new do |spec|
-  spec.version = "0.1.0"
   spec.name = "pretty_logger"
   spec.version = PrettyLogger::VERSION
   spec.authors = ["Rocco Nicholls"]
@@ -21,10 +20,8 @@ Gem::Specification.new do |spec|
 
   # Specify which files should be added to the gem when it is released.
   # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
-  spec.files = Dir.chdir(__dir__) do
-    `git ls-files -z`.split("\x0").reject do |f|
-      (f == __FILE__) || f.match(%r{\A(?:(?:bin|test|spec|features)/|\.(?:git|circleci)|appveyor)})
-    end
+  spec.files = `git ls-files -z`.split("\x0").reject do |f|
+    f.match(%r{\A(?:bin/|test/|spec/|features/|\.git|\.circleci/|appveyor\.yml)})
   end
   spec.bindir = "exe"
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
