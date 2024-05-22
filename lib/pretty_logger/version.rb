@@ -1,3 +1,3 @@
-module PrettyLogger
+class PrettyLogger
   VERSION = "1.2.1"
 end
