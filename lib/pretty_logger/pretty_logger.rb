@@ -1,6 +1,13 @@
 module PrettyLogger
   module_function
 
+  COLORS = {
+    debug: "\e[90m",
+    info: "\e[96m",
+    warn: "\e[93m",
+    error: "\e[31m",
+  }
+
   def instance
     @instance ||= ::ActiveSupport::Logger.new("log/custom.log")
   end
@@ -19,20 +26,25 @@ module PrettyLogger
     )
   end
 
+  def pretty_log(level, *messages)
+    message = messages.map { |m| pretty_message(m) }.join("\n")
+    instance.send(level, "\e[90m#{timestamp}#{COLORS[level]}[#{level.to_s[0].upcase}]\e[0m #{message}")
+  end
+
   def debug(*messages)
-    instance.debug("\e[90m#{timestamp}\e[90m[DEBUG]\e[0m " + messages.map { |m| pretty_message(m) }.join("\n"))
+    pretty_log(:debug, *messages)
   end
 
   def info(*messages)
-    instance.info("\e[90m#{timestamp}\e[36m[INFO]\e[0m " + messages.map { |m| pretty_message(m) }.join("\n"))
+    pretty_log(:info, *messages)
   end
 
   def warn(*messages)
-    instance.warn("\e[90m#{timestamp}\e[38;5;208m[WARN]\e[0m " + messages.map { |m| pretty_message(m) }.join("\n"))
+    pretty_log(:warn, *messages)
   end
 
   def error(*messages)
-    instance.error("\e[90m#{timestamp}\e[31m[ERROR]\e[0m " + messages.map { |m| pretty_message(m) }.join("\n"))
+    pretty_log(:error, *messages)
   end
 
   def cl
