@@ -23,11 +23,14 @@ module PrettyLogger
       /\e\[36m:(\w+)\e\[0m=>/i, ("\e[36m" + '\1: ' + "\e[0m") # hashrocket(sym) to colon(sym)
     ).gsub(
       /\e\[0m=>/, "\e[0m: " # all hashrockets to colons
+    ).gsub(
+      # grey out nils
+      "\e[1;36mnil\e[0m", "\e[1;90mnil\e[0m"
     )
   end
 
   def pretty_log(level, *messages)
-    message = messages.map { |m| pretty_message(m) }.join("\n")
+    message = messages.compact.map { |m| pretty_message(m) }.join("\n")
     instance.send(level, "\e[90m#{timestamp}#{COLORS[level]}[#{level.to_s[0].upcase}]\e[0m #{message}")
   end
 
