@@ -32,7 +32,7 @@ module PrettyLogger
   def pretty_log(level, *messages)
     message = messages.compact.map { |m| pretty_message(m) }.join("\n")
     colorcode = level.presence && COLORS[level]
-    instance.send(level, "\e[90m#{timestamp}#{colorcode}[#{level.to_s.upcase}]\e[0m#{message}")
+    instance.send(level || :info, "\e[90m#{timestamp}#{colorcode}[#{level.to_s.upcase}]\e[0m#{message}")
   end
 
   def debug(*messages)
