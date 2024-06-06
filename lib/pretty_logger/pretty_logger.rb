@@ -31,7 +31,7 @@ module PrettyLogger
 
   def pretty_log(level, *messages)
     message = messages.compact.map { |m| pretty_message(m) }.join("\n")
-    instance.send(level, "\e[90m#{timestamp}#{COLORS[level]}[#{level.to_s[0].upcase}]\e[0m #{message}")
+    instance.send(level, "\e[90m#{timestamp}#{COLORS[level]}[#{level.to_s.upcase}]\e[0m#{message}")
   end
 
   def debug(*messages)
@@ -39,7 +39,7 @@ module PrettyLogger
   end
 
   def info(*messages)
-    pretty_log(:info, *messages)
+    pretty_log(nil, *messages) # nil makes it so `info` level doesn't show a prefix
   end
 
   def warn(*messages)
