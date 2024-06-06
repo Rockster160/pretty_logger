@@ -9,7 +9,7 @@ class PrettyLogger::RequestLogger
 
   def log_request(extra_text=nil)
     info([
-      "#{pretty_user} #{request.method.upcase} #{request.path} #{extra_text}\e[0m",
+      "#{pretty_user}#{request.method.upcase} #{request.path} #{extra_text}\e[0m",
       params.blank? ? nil : truncate(pretty_message(params.as_json.deep_symbolize_keys)),
     ].compact.join("\n"))
   end
