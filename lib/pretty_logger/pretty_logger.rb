@@ -35,6 +35,10 @@ module PrettyLogger
     instance.send(level || :info, "\e[90m#{timestamp}#{level_indicator}\e[0m#{message}")
   end
 
+  def log(*messages)
+    pretty_log(nil, *messages)
+  end
+
   def debug(*messages)
     pretty_log(:debug, *messages)
   end
@@ -86,6 +90,32 @@ module PrettyLogger
       rocco:   rgb(1, 96, 255),
       orange:  rgb(255, 150, 0),
       pink:    rgb(255, 150, 150),
+    }
+  end
+
+  def ansi_colors
+    # timestamp: `light_black`
+    # url:        `white`
+    # hashkeys:   `cyan`
+    # strings:    `green`
+    # light_ colors don't work for bg in tmux
+    {
+      black:         30,
+      light_black:   90,
+      red:           31,
+      light_red:     91,
+      green:         32,
+      light_green:   92,
+      yellow:        33,
+      light_yellow:  93,
+      blue:          34,
+      light_blue:    94,
+      magenta:       35,
+      light_magenta: 95,
+      cyan:          36,
+      light_cyan:    96,
+      white:         37,
+      light_white:   97,
     }
   end
 
