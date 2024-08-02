@@ -1,10 +1,11 @@
 class PrettyLogger::RequestLogger
   include PrettyLogger
-  attr_accessor :request, :current_user
+  attr_accessor :request, :current_user, :data
 
   def initialize(request:nil, current_user:nil)
     @request = request
     @current_user = current_user
+    @data = {}
   end
 
   def log_request(extra_text=nil)
